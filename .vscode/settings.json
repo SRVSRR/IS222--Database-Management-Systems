@@ -13,6 +13,20 @@
             "database": "airbnb",
             "username": "root",
             "connectionTimeout": 30
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "xprotocol",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 33060,
+            "driver": "MySQL",
+            "name": "Week10Labs_part2",
+            "database": "Week10Labs",
+            "username": "root",
+            "connectionTimeout": 30
         }
     ]
 }
