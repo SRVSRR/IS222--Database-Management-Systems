@@ -1,0 +1,143 @@
+-- @block 
+-- Customer Table 
+CREATE TABLE Customer(
+CUS_CODE VARCHAR(10) PRIMARY KEY,
+CUS_LNAME VARCHAR(50),
+CUS_FNAME VARCHAR(50),
+CUS_INITIAL CHAR(1),
+CUS_AREACODE VARCHAR(10),
+CUS_PHONE VARCHAR(15)
+);
+
+-- @block 
+-- Customer2 Table (structure copy of Customer)
+CREATE TABLE Customer2 LIKE Customer;
+
+-- @block 
+-- Invoice Table
+CREATE TABLE Invoice(
+INV_NUMBER VARCHAR(10) PRIMARY KEY,
+CUS_CODE VARCHAR(10),
+INV_DATE DATE,
+FOREIGN KEY (CUS_CODE) REFERENCES Customer(CUS_CODE)
+);
+
+-- @block
+-- Product Table
+CREATE TABLE Product(
+P_CODE VARCHAR(10) PRIMARY KEY,
+P_DESCRIPT VARCHAR(100),
+P_PRICE DECIMAL(10,2)
+);
+-- @block
+-- Line Table
+CREATE TABLE Line(
+LINE_ID INT AUTO_INCREMENT PRIMARY KEY,
+INV_NUMBER VARCHAR(10),
+P_CODE VARCHAR(10),
+LINE_UNITS INT,
+LINE_PRICE DECIMAL(10,2),
+FOREIGN KEY (INV_NUMBER) REFERENCES Invoice(INV_NUMBER),
+FOREIGN KEY (P_CODE) REFERENCES Product(P_CODE)
+);
+
+-- Insert Data
+
+-- @block
+-- Customer Data
+INSERT INTO Customer VALUES
+('10010', 'Ramas','Alfred','A', '815','844.2573'),
+('10011','Smith','Alice','B','800','555.1234'),
+('10012','Kumar', 'Anil', 'C','679','998.1123');
+
+-- @block
+-- Copy Customer to Customer2
+INSERT INTO Customer2 SELECT * FROM Customer;
+
+-- @block
+-- Invoice Data
+INSERT INTO Invoice VALUES
+('1001', '10010','2004-01-15'),
+('1002','10011', '2004-01--17'),
+('1003','10012','2004-01-18');
+
+
+-- @block
+-- Product Data
+INSERT INTO Product VALUES
+('P100','USB Cable',20.00),
+('P101','Wireless Mouse', 24.50),
+('P102','keyboard', 14.99),
+('P103','Webcam',35.00);
+
+-- @block
+-- Line Items
+INSERT INTO Line (INV_NUMBER, P_CODE, LINE_UNITS, LINE_PRICE) VALUES
+('1001', 'P100', 2, 20.00),
+('1001', 'P101', 1, 24.50),
+('1002', 'P102', 3, 14.99),
+('1003','P103', 1, 35.00);
+
+-- @block
+SELECT * FROM Customer
+
+--  @block
+SELECT CUS_CODE, CONCAT(CUS_FNAME, ' ', CUS_INITIAL) As Full_Name FROM Customer;
+
+-- @block
+SELECT INV_NUMBER, CUS_CODE, INV_DATE 
+FROM Invoice 
+WHERE CUS_CODE = '10011'
+
+-- @block
+SELECT INV_NUMBER
+FROM Invoice
+WHERE INV_DATE <= '2004-01-16';
+
+-- @block
+SELECT P_CODE,P_DESCRIPT,P_PRICE
+FROM Product
+WHERE P_PRICE BETWEEN 15 AND 25;
+
+-- @block
+SELECT MIN(P_PRICE) AS Lowest_Price
+FROM Product;
+
+-- @block
+SELECT CUS_CODE, CUS_FNAME, CUS_LNAME
+FROM Customer
+WHERE CUS_FNAME LIKE 'A%';
+
+-- @block
+SELECT i.INV_NUMBER, i.INV_DATE, i.CUS_CODE,
+CONCAT(C.CUS_FNAME, '', C.CUS_INITIAL, '', C.CUS_LNAME) AS Full_Name
+FROM Invoice i
+JOIN Customer c ON i.CUS_CODE = C.CUS_CODE;
+
+-- @block
+SELECT CUS_CODE, CUS_FNAME, CUS_LNAME
+FROM Customer
+ORDER BY CUS_LNAME ASC;
+
+-- @block
+SELECT CUS_CODE, CUS_FNAME, CUS_LNAME
+FROM Customer
+ORDER BY CUS_LNAME DESC;
+
+-- @block
+SELECT LINE_UNITS * LINE_PRICE AS Line_Total
+FROM Line
+WHERE INV_NUMBER = '1001';
+
+-- @block
+SELECT SUM(LINE_UNITS * LINE_PRICE) AS Total_Sales
+FROM Line;
+
+-- @block
+SELECT AVG(LINE_UNITS * LINE_PRICE) AS Average_Sale
+FROM Line;
+
+-- @block
+SELECT INV_NUMBER, SUM(LINE_UNITS *LINE_PRICE) AS Invoice_Total
+FROM Line
+GROUP BY INV_NUMBER;

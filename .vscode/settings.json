@@ -27,6 +27,20 @@
             "database": "Week10Labs",
             "username": "root",
             "connectionTimeout": 30
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Week 10 Graded Labs",
+            "database": "week10gradedlabs",
+            "username": "root",
+            "connectionTimeout": 30
         }
     ]
 }
