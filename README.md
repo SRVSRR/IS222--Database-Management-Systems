@@ -7,9 +7,9 @@
 - Mid-Semester Test with answers.
 
 ## Learning Resources
-- <a href="https://www.learncpp.com" target="_blank">Learn HTML & CSS </a>
-- <a href="https://roadmap.sh/cpp" target="_blank">Frontend Developer Roadmap </a>
-- <a href="https://youtu.be/-TkoO8Z07hI?si=JcH613azWVTTj1ya" target="_blank">HTML Full Course for free ⚡️ 
+- <a href="https://youtu.be/Cz3WcZLRaWc?si=RGT6D1krN0KzRvtt" target="_blank">MySQL - The Basics // Learn SQL in 23 Easy Steps </a>
+- <a href="https://youtu.be/5OdVJbNCSso?si=RIlgU01WgfNVpY7n" target="_blank">MySQL Full Course for free 🐬 </a>
+- <a href="https://roadmap.sh/sql" target="_blank">SQL Roadmap
  </a> 
 
 
