@@ -2,7 +2,7 @@
 
 ## Contents
 - Course updated to 2025.
-- 13 weeks worth of solved lab sheets.
+- 5 weeks worth of solved lab sheets.
 - Assignment 1 & 2 with documentation.
 - Mid-Semester Test with answers.
 
