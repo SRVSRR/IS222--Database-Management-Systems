@@ -55,6 +55,33 @@
             "database": "Week11",
             "username": "root",
             "connectionTimeout": 30
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "WEEK12Labs",
+            "database": "WEEK12Labs",
+            "username": "root"
+        },
+        {
+            "mysqlOptions": {
+                "authProtocol": "default",
+                "enableSsl": "Disabled"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "driver": "MySQL",
+            "name": "Week 12 Labs",
+            "database": "WEEK12Labs",
+            "username": "root",
+            "connectionTimeout": 30
         }
     ]
 }
