@@ -42,7 +42,6 @@ SELECT * FROM customer3;
 
 -- @block
 -- Create customer4 Table
-
 DROP TABLE IF EXISTS customer4;
 CREATE TABLE customer4 AS SELECT * FROM customer3;
 ALTER TABLE customer4 ADD PRIMARY KEY (Cus_code);
