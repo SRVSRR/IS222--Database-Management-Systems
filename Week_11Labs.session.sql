@@ -88,6 +88,9 @@ VALUES
 (1004, 'P003', 1, 55.00);
 
 -- @block
+SELECT * FROM Line;
+
+-- @block
 SELECT * FROM invoice;
 
 -- @block
@@ -144,3 +147,48 @@ ORDER BY
     p.ProductDescription ASC;
 
 -- @block
+ALTER VIEW Customer_View AS
+SELECT 
+    CustomerCode AS CV_CustomerCode, 
+    CONCAT(CustomerFirstName, " ", CustomerLastName) AS CV_Name,
+    CustomerBalance AS CV_Balance
+FROM customer
+WHERE CustomerBalance = 0
+ORDER BY CV_Name ASC;
+
+-- @block
+SELECT * FROM Customer_View;
+
+-- @block
+SELECT * FROM customer
+UNION
+SELECT * FROM customer2;
+
+-- @block
+SELECT * FROM customer
+WHERE CustomerBalance > (
+    SELECT AVG(CustomerBalance) FROM customer)
+AND CustomerBalance < (
+    SELECT MAX(CustomerBalance) FROM customer);
+
+-- @block
+SELECT InvoiceNumber, SUM(LinePrice * LineUnits) AS Total_sales
+FROM line
+GROUP BY InvoiceNumber
+HAVING Total_sales > 100
+ORDER BY Total_sales ASC;
+
+-- @block
+SELECT * FROM product
+WHERE ProductPrice > 50
+ORDER BY ProductCode ASC;
+
+-- @block
+SELECT 
+i.InvoiceNumber,
+l.LineUnits,
+l.LinePrice
+FROM product AS p, invoice AS i, line AS l
+WHERE p.ProductCode = l.ProductCode AND i.InvoiceNumber = l.InvoiceNumber
+GROUP BY
+    i.InvoiceNumber;
